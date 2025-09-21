@@ -364,48 +364,41 @@
         });
       }
 
-  async function startExperience() {
-  introOverlay.style.display = 'none';
-  introOverlay.setAttribute('aria-hidden', 'true');
-  try {
-    const el = document.documentElement;
-    if (el.requestFullscreen) {
-      await el.requestFullscreen();
-    } else if (el.webkitRequestFullscreen) {
-      await el.webkitRequestFullscreen();
-    } else if (el.msRequestFullscreen) {
-      await el.msRequestFullscreen();
-    } else {
-      console.info('Fullscreen API no disponible en este navegador.');
-    }
-  } catch (err) {
-    console.warn('No se pudo activar pantalla completa:', err);
-  }
-  if (wrapper) {
-    wrapper.style.position = 'fixed';
-    wrapper.style.bottom = '0';
-    wrapper.style.left = '0';
-    wrapper.style.right = '0';
-    wrapper.style.width = '100%';
-    wrapper.style.display = 'flex';
-    wrapper.style.alignItems = 'flex-end';
-    wrapper.style.justifyContent = 'center';
-    wrapper.style.overflow = 'visible';
-    wrapper.style.pointerEvents = 'none';
-    wrapper.style.zIndex = '50';
-  }
+      async function startExperience() {
 
-  normalizeFlowersVisibility();
-  resumeAllAnimations();
-  if (audio) {
-    try {
-      await audio.play();
-    } catch (err) {
-      console.warn('No se pudo reproducir el audio automáticamente:', err);
-    }
-  }
-}
+        introOverlay.style.display = 'none';
+        introOverlay.setAttribute('aria-hidden', 'true');
 
+
+        if (wrapper) {
+          wrapper.style.position = 'fixed';
+          wrapper.style.bottom = '0';
+          wrapper.style.left = '0';
+          wrapper.style.right = '0';
+          wrapper.style.width = '100%';
+          wrapper.style.display = 'flex';
+          wrapper.style.alignItems = 'flex-end';
+          wrapper.style.justifyContent = 'center';
+          wrapper.style.overflow = 'visible';
+          wrapper.style.pointerEvents = 'none';
+          wrapper.style.zIndex = '50';
+        }
+
+
+        normalizeFlowersVisibility();
+
+
+        resumeAllAnimations();
+
+
+        if (audio) {
+          try {
+            await audio.play();
+          } catch (err) {
+            console.warn('No se pudo reproducir el audio automáticamente:', err);
+          }
+        }
+      }
 
       document.addEventListener('DOMContentLoaded', function () {
         pauseAllAnimations();
